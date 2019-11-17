@@ -1,0 +1,90 @@
+<template>
+  <form @submit.prevent="handleSubmit">
+    <select v-model="item.type">
+      <option value="inc" selected>+</option>
+      <option value="exp">-</option>
+    </select>
+    <input
+      type="text"
+      placeholder="Add description"
+      class="input input--description"
+      v-model="item.description"
+      value
+    />
+    <input
+      type="number"
+      placeholder="Add Value"
+      class="input input--value"
+      v-model="item.value"
+      value
+      step="any"
+    />
+    <button class="btn btn--inc">Add</button>
+  </form>
+</template>
+
+<script>
+export default {
+  name: "InputForm",
+  data() {
+    return {
+      item: {
+        description: "",
+        value:0,
+        type: "inc"
+      }
+    };
+  },
+  methods: {
+    handleSubmit() {
+      if (this.item.value) {
+        let newItem = new Object({
+          description: this.item.description,
+          value: this.item.value,
+          type: this.item.type
+        });
+
+        this.$emit("add-New", newItem);
+        this.item.description = "";
+        this.item.value = 0;
+        this.item.type = "";
+      }
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+form {
+  padding: 20px;
+  background-color: #f2f2f2f2;
+}
+select {
+  width: 55px;
+    border: 1px solid #e7e7e7;
+    height: 44px;
+    font-size: 18px;
+    color: inherit;
+    background-color: #fff;
+    margin-right: 10px;
+    font-weight: 300;
+    transition: border 0.3s;
+}
+input {
+  border: 1px solid #e7e7e7;
+  background-color: #fff;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 12px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: border 0.3s;
+}
+button{
+  border: 1px solid #e7e7e7;
+   padding: 12px 15px;
+   background-color: rgb(76, 175, 10);
+   border-radius: 5px;
+}
+</style>
