@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    <h2>Total balance:{{balance}}</h2>
+    <h2>Available Budget in {{getDate}}:</h2>
+    <span>{{balance}}</span>
   </div>
 </template>
 
@@ -12,7 +13,15 @@ export default {
       type: Number,
       required: true
     }
-  }
+  },
+  computed: {
+    getDate(){
+      let newDate = new Date();
+      let Year = newDate.getFullYear();
+      let Month = newDate.getMonth()+1;
+      return `${Month}.${Year}`
+    }
+  },
 };
 </script>
 
@@ -30,6 +39,13 @@ export default {
 
   h2 {
     color: white;
+    font-weight: 200;
+    letter-spacing: 1px
+  }
+  span{
+    font-size: 40px;
+    margin-top: 20px;
+    color:white;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <select v-model="item.type">
-      <option value="inc" selected>+</option>
+      <option value="inc" selected="selected">+</option>
       <option value="exp">-</option>
     </select>
     <input
@@ -30,7 +30,7 @@ export default {
     return {
       item: {
         description: "",
-        value:0,
+        value: 0,
         type: "inc"
       }
     };
@@ -61,14 +61,14 @@ form {
 }
 select {
   width: 55px;
-    border: 1px solid #e7e7e7;
-    height: 44px;
-    font-size: 18px;
-    color: inherit;
-    background-color: #fff;
-    margin-right: 10px;
-    font-weight: 300;
-    transition: border 0.3s;
+  border: 1px solid #e7e7e7;
+  height: 44px;
+  font-size: 18px;
+  color: inherit;
+  background-color: #fff;
+  margin-right: 10px;
+  font-weight: 300;
+  transition: border 0.3s;
 }
 input {
   border: 1px solid #e7e7e7;
@@ -81,10 +81,10 @@ input {
   border-radius: 5px;
   transition: border 0.3s;
 }
-button{
+button {
   border: 1px solid #e7e7e7;
-   padding: 12px 15px;
-   background-color: rgb(76, 175, 10);
-   border-radius: 5px;
+  padding: 12px 15px;
+  background-color: rgb(76, 175, 10);
+  border-radius: 5px;
 }
 </style>

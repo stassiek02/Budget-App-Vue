@@ -4,8 +4,8 @@
     <div class="wrapper">
       <p></p>
       <InputForm @add-New="addNew" />
-      <ul v-for="item in list" :key="item.value">
-        <li>{{ item.description }} {{ item.value }}</li>
+      <ul class="listWrapper">
+        <BudgetItem :item="item" v-for="item in list" :key="item.value" />
       </ul>
     </div>
   </div>
@@ -16,13 +16,13 @@
 
 import Header from "./components/Header.vue";
 import InputForm from "./components/InputForm";
-import { parse } from 'path';
-
+import BudgetItem from "./components/BudgetItem";
 export default {
   name: "app",
   components: {
     Header,
-    InputForm
+    InputForm,
+    BudgetItem
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
       console.log(e);
       this.list.push(e);
 
-      this.calculateBalance()
+      this.calculateBalance();
     },
     calculateBalance() {
       let totalBalance = this.list.reduce(function(acc, item) {
@@ -45,7 +45,7 @@ export default {
           return acc - parseFloat(item.value);
         }
       }, 0);
-     return this.balance = totalBalance;
+      return (this.balance = totalBalance);
     }
   }
 };
@@ -66,5 +66,10 @@ export default {
 }
 .wrapper {
   margin: 0 auto;
+}
+.listWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  list-style: none;
 }
 </style>
