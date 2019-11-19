@@ -37,7 +37,7 @@ export default {
   methods: {
     handleSubmit() {
       if (this.item.value && this.item.description.length > 0) {
-        this.item.value = parseInt(this.item.value,10);
+        this.item.value = parseInt(this.item.value, 10);
         let newItem = new Object({
           description: this.item.description,
           value: this.item.value,
@@ -49,7 +49,7 @@ export default {
         this.item.value = 0;
         this.item.type = "inc";
       }
-    },
+    }
   }
 };
 </script>
@@ -58,6 +58,9 @@ export default {
 form {
   padding: 20px;
   background-color: #f2f2f2f2;
+  @media(max-width:550px){
+    padding:20px 0 ;
+  }
 }
 select {
   width: 55px;
@@ -69,6 +72,9 @@ select {
   margin-right: 10px;
   font-weight: 300;
   transition: border 0.3s;
+  @media (max-width: 550px) {
+    margin: 0;
+  }
 }
 input {
   border: 1px solid #e7e7e7;
@@ -80,11 +86,17 @@ input {
   margin-right: 10px;
   border-radius: 5px;
   transition: border 0.3s;
+  @media (max-width: 550px) {
+    margin: 0;
+  }
 }
 button {
   border: 1px solid #e7e7e7;
   padding: 12px 15px;
   background-color: rgb(76, 175, 10);
   border-radius: 5px;
+  @media (max-width: 550px) {
+    margin: 0;
+  }
 }
 </style>

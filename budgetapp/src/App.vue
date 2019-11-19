@@ -68,8 +68,8 @@ export default {
       localStorage.setItem("list", parsed);
     },
     deleteThisItem(index) {
-      console.log(index);
       this.list.splice(index, 1);
+      this.calculateBalance();
       this.saveList();
     }
   }

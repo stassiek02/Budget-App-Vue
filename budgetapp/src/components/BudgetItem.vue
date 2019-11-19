@@ -39,6 +39,9 @@ li {
   &:nth-of-type(2n) {
     background-color: #f2f2f2f2;
   }
+  @media(max-width:550px){
+    padding: 13px 25px;
+  }
 }
 .income {
   color: yellowgreen;
