@@ -4,7 +4,7 @@
     <p>
       <span v-if="item.type === 'inc'">+</span>
       <span v-else>-</span>
-      {{item.value}}
+      {{item.value}} PLN
     </p>
   </li>
 </template>
@@ -23,12 +23,12 @@ export default {
 
 <style lang="scss" scoped>
 li {
-  padding: 13px;
+  padding: 13px 100px;
   border-bottom: 1px solid #e7e7e7;
-  width: 100%;
+  width: calc(100%-2*100);
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 
     &:nth-of-type(2n){
         background-color: #f2f2f2f2;

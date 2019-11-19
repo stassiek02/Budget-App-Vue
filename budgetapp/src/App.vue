@@ -5,7 +5,7 @@
       <p></p>
       <InputForm @add-New="addNew" />
       <ul class="listWrapper">
-        <BudgetItem :item="item" v-for="item in list" :key="item.value" />
+        <BudgetItem :item="item" v-for="item in list" :key="item.description" />
       </ul>
     </div>
   </div>
@@ -30,11 +30,21 @@ export default {
       balance: 0
     };
   },
+  mounted() {
+    if (localStorage.getItem("list")) {
+      try {
+        this.list = JSON.parse(localStorage.getItem("list"));
+        this.calculateBalance();
+      } catch (e) {
+        localStorage.removeItem("list");
+      }
+    }
+  },
   methods: {
     addNew(e) {
-      console.log(e);
       this.list.push(e);
 
+      this.saveList();
       this.calculateBalance();
     },
     calculateBalance() {
@@ -46,6 +56,10 @@ export default {
         }
       }, 0);
       return (this.balance = totalBalance);
+    },
+    saveList() {
+      const parsed = JSON.stringify(this.list);
+      localStorage.setItem("list", parsed);
     }
   }
 };
@@ -56,7 +70,7 @@ export default {
   margin: 0;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -71,5 +85,6 @@ export default {
   max-width: 800px;
   margin: 0 auto;
   list-style: none;
+  padding: 0;
 }
 </style>

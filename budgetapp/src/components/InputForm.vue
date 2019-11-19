@@ -9,14 +9,13 @@
       placeholder="Add description"
       class="input input--description"
       v-model="item.description"
-      value
     />
     <input
       type="number"
       placeholder="Add Value"
       class="input input--value"
       v-model="item.value"
-      value
+      min="0"
       step="any"
     />
     <button class="btn btn--inc">Add</button>
@@ -37,7 +36,8 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if (this.item.value) {
+      if (this.item.value && this.item.description.length > 0) {
+        this.item.value = parseInt(this.item.value,10);
         let newItem = new Object({
           description: this.item.description,
           value: this.item.value,
@@ -47,9 +47,9 @@ export default {
         this.$emit("add-New", newItem);
         this.item.description = "";
         this.item.value = 0;
-        this.item.type = "";
+        this.item.type = "inc";
       }
-    }
+    },
   }
 };
 </script>
