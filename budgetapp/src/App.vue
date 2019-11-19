@@ -5,7 +5,13 @@
       <p></p>
       <InputForm @add-New="addNew" />
       <ul class="listWrapper">
-        <BudgetItem :item="item" v-for="item in list" :key="item.description" />
+        <BudgetItem
+          :item="item"
+          v-for="(item,index) in list"
+          :key="item.description"
+          :id="item.description"
+          v-on:delete-item="deleteThisItem(index)"
+        />
       </ul>
     </div>
   </div>
@@ -60,6 +66,11 @@ export default {
     saveList() {
       const parsed = JSON.stringify(this.list);
       localStorage.setItem("list", parsed);
+    },
+    deleteThisItem(index) {
+      console.log(index);
+      this.list.splice(index, 1);
+      this.saveList();
     }
   }
 };
