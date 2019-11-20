@@ -58,13 +58,14 @@ export default {
 form {
   padding: 20px;
   background-color: #f2f2f2f2;
-  @media(max-width:550px){
-    padding:20px 0 ;
+  @media (max-width: 550px) {
+    padding: 20px 0;
   }
 }
 select {
   width: 55px;
   border: 1px solid #e7e7e7;
+  border-radius: 5px;
   height: 44px;
   font-size: 18px;
   color: inherit;
