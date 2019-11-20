@@ -7,12 +7,19 @@
       <ul class="listWrapper">
         <BudgetItem
           :item="item"
-          v-for="(item,index) in list"
+          v-for="(item, index) in list"
           :key="item.description"
           :id="item.description"
           v-on:delete-item="deleteThisItem(index)"
         />
       </ul>
+    </div>
+    <div
+      @click="installer()"
+      class="btn--install"
+      :style="{ display: installBtn }"
+    >
+      Install
     </div>
   </div>
 </template>
@@ -33,7 +40,9 @@ export default {
   data() {
     return {
       list: [],
-      balance: 0
+      balance: 0,
+      installBtn: "none",
+      installer: undefined
     };
   },
   mounted() {
@@ -72,6 +81,27 @@ export default {
       this.calculateBalance();
       this.saveList();
     }
+  },
+  created() {
+    let installPrompt;
+
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();
+      installPrompt = e;
+      this.installBtn = "block";
+    });
+
+    this.installer = () => {
+      this.installBtn = "none";
+      installPrompt.prompt();
+      installPrompt.userChoice.then(result => {
+        if (result.outcome === "accepted") {
+          console.log("Install accepted!");
+        } else {
+          console.log("Install denied!");
+        }
+      });
+    };
   }
 };
 </script>
@@ -97,5 +127,14 @@ export default {
   margin: 0 auto;
   list-style: none;
   padding: 0;
+}
+.btn--install {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid orangered;
+  transform: translateX(-50%);
 }
 </style>

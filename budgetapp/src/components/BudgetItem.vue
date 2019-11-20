@@ -1,10 +1,10 @@
 <template>
-  <li :class="{income : item.type == 'inc',expanse : item.type == 'exp'}">
-    <p>{{item.description}}</p>
+  <li :class="{ income: item.type == 'inc', expanse: item.type == 'exp' }">
+    <p>{{ item.description }}</p>
     <p>
       <span v-if="item.type === 'inc'">+</span>
       <span v-else>-</span>
-      {{item.value}} PLN
+      {{ item.value }} PLN
       <button class="btn--delete" @click="$emit('delete-item')">&times;</button>
     </p>
   </li>
@@ -23,7 +23,7 @@ export default {
       type: String,
       required: true
     }
-  },
+  }
 };
 </script>
 
@@ -39,7 +39,7 @@ li {
   &:nth-of-type(2n) {
     background-color: #f2f2f2f2;
   }
-  @media(max-width:550px){
+  @media (max-width: 550px) {
     padding: 13px 25px;
   }
 }
