@@ -72,6 +72,7 @@ select {
   background-color: #fff;
   margin-right: 10px;
   font-weight: 300;
+  border-radius: 5px;
   transition: border 0.3s;
   @media (max-width: 550px) {
     margin: 0;
