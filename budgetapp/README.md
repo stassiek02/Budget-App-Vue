@@ -1,4 +1,4 @@
-# budgetapp
+# Budget Control App
 
 ## Project setup
 ```
