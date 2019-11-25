@@ -11,9 +11,10 @@ export const store = new Vuex.Store({
     change(state, payload) {
       state[payload.property].push(payload.with);
     },
-    // deleteItem(state,payload){
-    //   state[payload.property].
-    // }
+    deleteItem(state,payload){
+      console.log(payload.with)
+      state[payload.property].splice(state[payload.property].indexOf(payload.with),1);
+    }
   },
   getters:{
       getList:state =>state.list
