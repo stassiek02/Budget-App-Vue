@@ -1,18 +1,24 @@
 <template>
   <div class="header">
     <h2>Available Budget in {{ getDate }}:</h2>
-    <span>{{ balance }} PLN</span>
+    <span>{{calculateBalance()}} PLN</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "Header",
-  props: {
-    balance: {
-      type: Number,
-      required: true
-    }
+  methods:{
+    calculateBalance() {
+      let totalBalance = this.$store.getters.getList.reduce(function(acc, item) {
+        if (item.type === "inc") {
+          return acc + parseFloat(item.value);
+        } else {
+          return acc - parseFloat(item.value);
+        }
+      }, 0);
+      return totalBalance;
+    },
   },
   computed: {
     getDate() {

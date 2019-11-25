@@ -44,7 +44,7 @@ export default {
           type: this.item.type
         });
 
-        this.$emit("add-New", newItem);
+        this.$store.commit("change", { property: 'list', with: newItem });
         this.item.description = "";
         this.item.value = 0;
         this.item.type = "inc";
