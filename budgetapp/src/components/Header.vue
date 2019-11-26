@@ -1,38 +1,25 @@
 <template>
   <div class="header">
     <h2>Available Budget in {{ getDate }}:</h2>
-    <span>{{calculateBalance()}} PLN</span>
+    <span>{{ calculateBalance }} PLN</span>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Header",
-  methods: {
-    calculateBalance() {
-      return (
-        this.reduceList(this.$store.getters.getIncList) +
-        this.reduceList(this.$store.getters.getExpList)
-      );
-    },
-    reduceList(arr) {
-      let totalBalance = arr.reduce(function(acc, item) {
-        if (item.type === "inc") {
-          return acc + parseFloat(item.value);
-        } else {
-          return acc - parseFloat(item.value);
-        }
-      }, 0);
-      return totalBalance;
-    }
-  },
   computed: {
+    calculateBalance() {
+      return this.getTotalInc - this.getTotalExp;
+    },
     getDate() {
       let newDate = new Date();
       let Year = newDate.getFullYear();
       let Month = newDate.getMonth() + 1;
       return `${Month}.${Year}`;
-    }
+    },
+    ...mapGetters(["getTotalInc", "getTotalExp"])
   }
 };
 </script>

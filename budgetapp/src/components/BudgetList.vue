@@ -2,30 +2,35 @@
   <div class="listWrapper">
     <ul>
       <h3>Incomes</h3>
-      <BudgetItem v-for="item in Inclist" :key="item.description" :id="item.description" :item="item" />
+      <BudgetItem
+        v-for="item in incList"
+        :key="item.description"
+        :id="item.description"
+        :item="item"
+      />
     </ul>
     <ul>
-       <h3>Expanses</h3>
-      <BudgetItem v-for="item in Explist" :key="item.description" :id="item.description" :item="item" />
+      <h3>Expanses</h3>
+      <BudgetItem
+        v-for="item in expList"
+        :key="item.description"
+        :id="item.description"
+        :item="item"
+      />
     </ul>
   </div>
 </template>
 
 <script>
 import BudgetItem from "./BudgetItem";
+import { mapGetters,mapState } from "vuex";
 export default {
   name: "BudgetList",
   components: {
     BudgetItem
   },
-  computed: {
-    Inclist() {
-      return this.$store.getters.getIncList;
-    },
-    Explist() {
-      return this.$store.getters.getExpList;
-    }
-  }
+  computed: mapState(['incList','expList']),
+  
 };
 </script>
 
@@ -39,20 +44,20 @@ export default {
   list-style: none;
   padding: 0;
 
-  ul{
+  ul {
     padding: 0;
   }
 
-  @media(max-width: 600px){
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
 
-    ul{
+    ul {
       margin: 0;
       padding: 0 10px;
     }
   }
 }
-h3{
-  margin: 20px
+h3 {
+  margin: 20px;
 }
 </style>

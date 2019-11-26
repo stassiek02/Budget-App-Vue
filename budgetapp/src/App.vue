@@ -4,15 +4,6 @@
     <div class="wrapper">
       <InputForm />
       <BudgetList />
-      <!-- <ul class="listWrapper">
-        <BudgetItem
-          :item="item"
-          v-for="(item, index) in list"
-          :key="item.description"
-          :id="item.description"
-          v-on:delete-item="deleteThisItem(index)"
-        />
-      </ul> -->
     </div>
     <div
       @click="installer()"

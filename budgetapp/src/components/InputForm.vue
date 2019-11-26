@@ -35,7 +35,6 @@ export default {
     };
   },
   methods: {
-
     handleSubmit() {
       if (this.item.value && this.item.description.length > 0) {
         this.item.value = parseInt(this.item.value, 10);
@@ -44,19 +43,19 @@ export default {
           value: this.item.value,
           type: this.item.type
         });
-        if(newItem.type === 'inc'){
-          this.$store.commit("change", { property: 'incList', with: newItem });
-        }else if (newItem.type === 'exp'){
-          this.$store.commit("change", { property: 'expList', with: newItem });
+        if (newItem.type === "inc") {
+          this.$store.commit("change", { property: "incList", with: newItem });
+        } else if (newItem.type === "exp") {
+          this.$store.commit("change", { property: "expList", with: newItem });
         }
-        
+
         this.clearInputs();
       }
     },
-    clearInputs(){
-        this.item.description = "";
-        this.item.value = 0;
-        this.item.type = "inc";
+    clearInputs() {
+      this.item.description = "";
+      this.item.value = 0;
+      this.item.type = "inc";
     }
   }
 };
