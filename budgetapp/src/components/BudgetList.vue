@@ -1,7 +1,12 @@
 <template>
   <div class="listWrapper">
     <ul>
-      <BudgetItem v-for="item in list" :key="item.description" :id="item.description" :item="item" />
+      <h3>Incomes</h3>
+      <BudgetItem v-for="item in Inclist" :key="item.description" :id="item.description" :item="item" />
+    </ul>
+    <ul>
+       <h3>Expanses</h3>
+      <BudgetItem v-for="item in Explist" :key="item.description" :id="item.description" :item="item" />
     </ul>
   </div>
 </template>
@@ -14,18 +19,40 @@ export default {
     BudgetItem
   },
   computed: {
-    list() {
-      return this.$store.getters.getList;
+    Inclist() {
+      return this.$store.getters.getIncList;
+    },
+    Explist() {
+      return this.$store.getters.getExpList;
     }
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .listWrapper {
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  max-width: 1000px;
   margin: 0 auto;
   list-style: none;
   padding: 0;
+
+  ul{
+    padding: 0;
+  }
+
+  @media(max-width: 600px){
+    grid-template-columns: 1fr;
+
+    ul{
+      margin: 0;
+      padding: 0 10px;
+    }
+  }
+}
+h3{
+  margin: 20px
 }
 </style>

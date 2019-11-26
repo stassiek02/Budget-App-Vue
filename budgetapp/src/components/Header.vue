@@ -8,9 +8,15 @@
 <script>
 export default {
   name: "Header",
-  methods:{
+  methods: {
     calculateBalance() {
-      let totalBalance = this.$store.getters.getList.reduce(function(acc, item) {
+      return (
+        this.reduceList(this.$store.getters.getIncList) +
+        this.reduceList(this.$store.getters.getExpList)
+      );
+    },
+    reduceList(arr) {
+      let totalBalance = arr.reduce(function(acc, item) {
         if (item.type === "inc") {
           return acc + parseFloat(item.value);
         } else {
@@ -18,7 +24,7 @@ export default {
         }
       }, 0);
       return totalBalance;
-    },
+    }
   },
   computed: {
     getDate() {

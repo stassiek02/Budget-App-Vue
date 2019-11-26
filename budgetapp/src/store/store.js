@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    list: []
+    incList: [],
+    expList:[],
   },
   mutations: {
     change(state, payload) {
@@ -17,6 +18,7 @@ export const store = new Vuex.Store({
     }
   },
   getters:{
-      getList:state =>state.list
+      getIncList:state =>state.incList,
+      getExpList:state =>state.expList
   }
 });

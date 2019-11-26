@@ -5,7 +5,7 @@
       <span v-if="item.type === 'inc'">+</span>
       <span v-else>-</span>
       {{ item.value }} PLN
-      <button class="btn--delete" @click="deleteItem(id)">&times;</button>
+      <button class="btn--delete" @click="deleteItem(id,item.type)">&times;</button>
     </p>
   </li>
 </template>
@@ -25,9 +25,8 @@ export default {
     }
   },
   methods: {
-    deleteItem(id) {
-      console.log(id);
-      this.$store.commit("deleteItem", { property: "list", with: id });
+    deleteItem(id,type) {
+      this.$store.commit("deleteItem", { property: `${[type]}List`, with: id });
     }
   }
 };
@@ -45,7 +44,7 @@ li {
   &:nth-of-type(2n) {
     background-color: #f2f2f2f2;
   }
-  @media (max-width: 550px) {
+  @media (max-width: 900px) {
     padding: 13px 25px;
   }
 }
