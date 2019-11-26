@@ -100,9 +100,10 @@ input {
   }
 }
 button {
+  color: white;
   border: 1px solid #e7e7e7;
   padding: 12px 15px;
-  background-color: rgb(76, 175, 10);
+  background-color: #27ae60;
   border-radius: 5px;
   @media (max-width: 550px) {
     margin: 0;

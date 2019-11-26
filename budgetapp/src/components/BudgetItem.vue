@@ -41,6 +41,8 @@ li {
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+  animation-name: fadeIn;
+  animation-duration: .2s;
   &:nth-of-type(2n) {
     background-color: #f2f2f2f2;
   }
@@ -62,5 +64,15 @@ li {
   right: 0;
   top: 10px;
   cursor: pointer;
+}
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
