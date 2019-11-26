@@ -105,6 +105,11 @@ button {
   padding: 12px 15px;
   background-color: #27ae60;
   border-radius: 5px;
+  transition: opacity 0.2s;
+  
+  &:hover {
+    opacity: 0.85;
+  }
   @media (max-width: 550px) {
     margin: 0;
   }
