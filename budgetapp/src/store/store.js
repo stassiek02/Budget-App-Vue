@@ -1,8 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import VuexPersist from "vuex-persist";
 
 Vue.use(Vuex);
 
+const vuexLocalStorage = new VuexPersist({
+  key: "vuex",
+  storage: window.localStorage
+});
 export const store = new Vuex.Store({
   state: {
     incList: [],
@@ -31,5 +36,6 @@ export const store = new Vuex.Store({
         return acc + parseFloat(item.value);
       }, 0);
     }
-  }
+  },
+  plugins: [vuexLocalStorage.plugin]
 });
